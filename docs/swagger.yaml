@@ -1,0 +1,104 @@
+definitions:
+  handler.ItemInfo:
+    properties:
+      content:
+        type: string
+      source:
+        type: string
+    type: object
+  handler.V1GetAllPlanetsResponse:
+    properties:
+      count:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/model.PlanetItem'
+        type: array
+    type: object
+  handler.V1GetPlanetByIDResponse:
+    properties:
+      geology:
+        $ref: '#/definitions/handler.ItemInfo'
+      id:
+        type: string
+      name:
+        type: string
+      overview:
+        $ref: '#/definitions/handler.ItemInfo'
+      radius:
+        type: integer
+      revolution:
+        type: integer
+      rotation:
+        type: integer
+      structure:
+        $ref: '#/definitions/handler.ItemInfo'
+      temperature:
+        type: integer
+    type: object
+  model.PlanetItem:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/planets:
+    get:
+      consumes:
+      - application/json
+      description: Get random planets list from 1-8
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.V1GetAllPlanetsResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.PlanetItem'
+                  type: array
+              type: object
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/handler.V1GetAllPlanetsResponse'
+      summary: Get planets
+      tags:
+      - planets
+  /api/v1/planets/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get planet by ID
+      parameters:
+      - description: Planet ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.V1GetPlanetByIDResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.V1GetPlanetByIDResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/handler.V1GetPlanetByIDResponse'
+      summary: Get planet by ID
+      tags:
+      - planets
+swagger: "2.0"

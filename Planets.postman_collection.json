@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "ff3c335c-0568-4f44-b81e-9d1977925d72",
+		"name": "Planets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2006654",
+		"_collection_link": "https://www.postman.com/gold-shuttle-5896/workspace/planets/collection/2006654-ff3c335c-0568-4f44-b81e-9d1977925d72?action=share&source=collection_link&creator=2006654"
+	},
+	"item": [
+		{
+			"name": "ListOfPlanets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/api/v1/planets/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"planets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlanetByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/api/v1/planets/earth",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"planets",
+						"earth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
